@@ -12,6 +12,10 @@
     <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
     {% endassets %}
 
+    {% for message in get_flashed_messages() %}
+    <div class="alert">{{ message }}</div>
+    {% endfor %}
+
     <title>Flask application</title>
 </head>
 

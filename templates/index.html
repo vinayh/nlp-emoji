@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
 {% block body %}
-
 <div class="container mt-5">
-    <h1>A Flask application with Bootstrap Sass</h1>
+    <h1>{% block title %} Search for an emoji {% endblock %}</h1>
+    <form method="post">
+        <label for="title">Description</label>
+        <br>
+        <input type="text" class="form-control" name="description" placeholder="Emoji description"
+            value="{{ request.form['description'] }}"></input>
+        <br>
 
-    <p>
-        Text here.
+        <!-- <label for="info">More info</label>
+        <br>
+        <textarea name="info" class="form-control" placeholder="More info" rows="15"
+            cols="60">{{ request.form['info'] }}</textarea>
+        <br> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
-
 {% endblock %}
