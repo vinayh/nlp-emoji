@@ -1,0 +1,2 @@
+static/embeddings.npy filter=lfs diff=lfs merge=lfs -text
+embeddings.npy filter=lfs diff=lfs merge=lfs -text
