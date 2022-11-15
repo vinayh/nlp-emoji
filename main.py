@@ -3,6 +3,8 @@ import os
 from flask import Flask, render_template, request, url_for, flash, redirect
 from flask_assets import Bundle, Environment
 
+from emoji import load_embeddings, top_idx
+
 app = Flask(__name__)
 if 'SECRET_KEY' in os.environ:
     app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
@@ -10,6 +12,8 @@ else:
     raise Exception
 assets = Environment(app)
 assets.url = app.static_url_path
+embeddings, emoji_dict = load_embeddings()
+k = 3
 
 # Scss files
 scss = Bundle(
@@ -37,13 +41,16 @@ def index():
         # info = request.form['info']
 
         if not description:
-            flash('Description is required!')
+            flash('Description is required!', 'error')
         # elif not info:
-        #     flash('More info is required!')
+        #     flash('More info is required!', 'error')
         else:
             # TODO: Add action using form submission here
             # messages.append({'title': title, 'content': content})
-            return redirect(url_for('index'))
+            # return redirect(url_for('index'))
+            top_emoji = [emoji_dict[i]
+                         for i in top_idx(request.form['description'], embeddings, k)]
+            flash(top_emoji, 'emojis')
     return render_template('index.html')
 
 
