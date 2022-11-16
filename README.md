@@ -2,6 +2,8 @@
 
 This project was created as a very small proof-of-concept in about a day to try out the Cohere Embedding API, and is built using Flask and Bootstrap/Sass.
 
+A demo of this project is available at: https://nlp-emoji.fly.dev
+
 ## Usage
 Find matches for your search terms from the set of Unicode emojis, particularly helpful for suggesting reasonable alternatives if a direct match doesn't exist. 
 
